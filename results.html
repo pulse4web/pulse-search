@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pulse Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #121212;
+      color: #eee;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      border-bottom: 1px solid #333;
+      background-color: #1e1e1e;
+    }
+
+    header a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 48px;
+      color: #ff6f00;
+      text-shadow: 0 0 8px rgba(255, 111, 0, 0.6);
+    }
+
+    #search-form {
+      flex-grow: 1;
+      margin-left: 24px;
+      display: flex;
+      border-radius: 32px;
+      background-color: #1e1e1e;
+      box-shadow: 0 0 20px rgba(255, 111, 0, 0.3);
+      padding: 12px 24px;
+      border: 1px solid #333;
+      transition: box-shadow 0.3s ease;
+    }
+
+    #search-form:focus-within {
+      box-shadow: 0 0 28px 3px #ff6f00;
+      border-color: #ff6f00;
+    }
+
+    #search-input {
+      flex-grow: 1;
+      border: none;
+      background: transparent;
+      color: #eee;
+      font-size: 18px;
+      padding: 10px 12px;
+      font-family: Arial, sans-serif;
+      outline: none;
+    }
+
+    #search-input::placeholder {
+      color: #888;
+    }
+
+    #search-button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 24px;
+      color: #ff6f00;
+      padding-left: 16px;
+      transition: color 0.3s ease;
+    }
+
+    #search-button:hover {
+      color: #ffa040;
+    }
+
+    .gcse-searchresults-only {
+      max-width: 650px;
+      margin: 32px auto;
+      padding: 0 12px 48px;
+      box-sizing: border-box;
+    }
+
+    /* Google Search box and results override for dark mode */
+    .gsc-control-cse {
+      background-color: transparent !important;
+      color: #eee !important;
+      border-color: #333 !important;
+    }
+
+    .gsc-webResult.gsc-result {
+      background-color: #1e1e1e !important;
+      border-color: #333 !important;
+    }
+
+    .gsc-cursor-page {
+      background-color: #1e1e1e !important;
+      color: #ff6f00 !important;
+      border-radius: 4px;
+      margin: 0 4px;
+    }
+
+    .gsc-cursor-current-page {
+      background-color: #ff6f00 !important;
+      color: #121212 !important;
+    }
+
+    /* Highlight Web and Image tabs in orange */
+    .gsc-tabsArea .gsc-tabHeader.gsc-tabhActive,
+    .gsc-tabsArea .gsc-tabHeader:hover {
+      background-color: orange !important;
+      color: white !important;
+      border-color: white !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" aria-label="Pulse Home">
+      <h1>Pulse</h1>
+    </a>
+    <form id="search-form" action="results.html" method="GET" role="search">
+      <input id="search-input" type="text" name="q" autocomplete="off" aria-label="Search" placeholder="Search Pulse..." />
+      <button id="search-button" type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass fa-2xs" style="color: #ffffff;"></i></button>
+    </form>
+  </header>
+
+  <div class="gcse-searchresults-only"></div>
+
+  <script async src="https://cse.google.com/cse.js?cx=82dd185c7369e4532"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') || '';
+    document.getElementById('search-input').value = q;
+  </script>
+
+</body>
+</html>
